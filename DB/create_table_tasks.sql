@@ -2,7 +2,7 @@ CREATE TABLE tasks(
     id BIGSERIAL PRIMARY KEY,
     attendance_id INT NOT NULL,
     task_text TEXT,
-    start_task_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    start_task_at TIMESTAMP WITH TIME ZONE NOT NULL,
     end_task_at TIMESTAMP WITH TIME ZONE,
     FOREIGN KEY (attendance_id) REFERENCES attendance(id)
 );

@@ -2,7 +2,7 @@ CREATE TABLE questions(
     id BIGSERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     question_text TEXT NOT NULL,
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    created_at TIMESTAMP WITH TIME ZONE NOT NULL,
     FOREIGN KEY(user_id) REFERENCES users(id)
 );
 

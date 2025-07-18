@@ -3,7 +3,7 @@ CREATE TABLE comments(
     question_id INT NOT NULL,
     user_id INT NOT NULL,
     comment_text TEXT NOT NULL,
-    comment_created_at TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
+    comment_created_at TIMESTAMP WITH TIME ZONE NOT NULL,
     FOREIGN KEY (question_id) REFERENCES questions(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
