@@ -1,4 +1,4 @@
-// HoverSelectController.cs
+ï»¿// HoverSelectController.cs
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -6,30 +6,26 @@ using TMPro;
 
 public class HoverSelectController : MonoBehaviour
 {
-    [Header("Ïà»úÓë¿Éµã²ã")]
     public Camera worldCam;
     public LayerMask selectableMask = ~0;
     public float rayMaxDistance = 1000f;
 
-    [Header("¹«¹² HoverUI£¨Ò»¸ö¼´¿É£©")]
     public RectTransform hoverUI;
     public TMP_Text hoverTitleText;
     public TMP_Text hoverSubtitleText;
     public Image hoverIconImage;
 
-    [Header("¹«¹² TaskUI£¨¿É¿Õ£»Èô²¿¼şÓĞ×¨ÊôÃæ°åÓÅÏÈÓÃ×¨Êô£©")]
     public GameObject sharedTaskUI;
     public TMP_Text taskTitleText;
     public TMP_Text taskDescText;
     public Image taskIconImage;
 
-    [Header("¶¯»­")]
     public string triggerName = "PlayMove";
 
     private SelectableOutline _hoverOutline;
     private Animator _hoverAnim;
     private PartUIBinder _hoverData;
-    private GameObject _openedTaskPanel; // µ±Ç°´ò¿ªµÄÈÎÎñÃæ°å£¨×¨Êô»ò¹«¹²£©
+    private GameObject _openedTaskPanel; // 
 
     void Start()
     {
@@ -43,7 +39,7 @@ public class HoverSelectController : MonoBehaviour
 
         if (!overUI) UpdateHover();
 
-        // ĞüÍ£ UI Î»ÖÃ¸úËæ
+        // æ‚¬åœ UI ä½ç½®è·Ÿéš
         if (hoverUI && _hoverAnim)
         {
             Vector2 sp = worldCam.WorldToScreenPoint(_hoverAnim.transform.position);
@@ -52,7 +48,7 @@ public class HoverSelectController : MonoBehaviour
             hoverUI.anchoredPosition = lp;
         }
 
-        // µã»÷£º´ò¿ªÈÎÎñ UI£¨×¨ÊôÓÅÏÈ£©
+        // ç‚¹å‡»ï¼šæ‰“å¼€ä»»åŠ¡ UIï¼ˆä¸“å±ä¼˜å…ˆï¼‰
         if (!overUI && Input.GetMouseButtonDown(0) && _hoverData)
         {
             OpenTaskUI(_hoverData);
@@ -102,15 +98,15 @@ public class HoverSelectController : MonoBehaviour
 
     void OpenTaskUI(PartUIBinder data)
     {
-        // ¹ØµôÉÏÒ»¸ö
+        // å…³æ‰ä¸Šä¸€ä¸ª
         if (_openedTaskPanel) _openedTaskPanel.SetActive(false);
 
-        if (data && data.taskUIPanel) // ÓÃ×¨Êô
+        if (data && data.taskUIPanel) // ç”¨ä¸“å±
         {
             _openedTaskPanel = data.taskUIPanel;
             _openedTaskPanel.SetActive(true);
         }
-        else if (sharedTaskUI)        // ÓÃ¹«¹²²¢Ìî³äÎÄ°¸
+        else if (sharedTaskUI)        // ç”¨å…¬å…±å¹¶å¡«å……æ–‡æ¡ˆ
         {
             if (taskTitleText) taskTitleText.text = data ? data.taskTitle : "";
             if (taskDescText) taskDescText.text = data ? data.taskDescription : "";
@@ -124,7 +120,7 @@ public class HoverSelectController : MonoBehaviour
         }
     }
 
-    // ÈÃÈÎÎñUIµÄ¡°Íê³É¡±°´Å¥µ÷ÓÃ£º²¥·Åµ±Ç°ĞüÍ£¶ÔÏó¶¯»­²¢¹Ø±ÕÃæ°å
+    // è®©ä»»åŠ¡UIçš„â€œå®Œæˆâ€æŒ‰é’®è°ƒç”¨ï¼šæ’­æ”¾å½“å‰æ‚¬åœå¯¹è±¡åŠ¨ç”»å¹¶å…³é—­é¢æ¿
     public void OnTaskCompleted()
     {
         if (_hoverAnim && !string.IsNullOrEmpty(triggerName))

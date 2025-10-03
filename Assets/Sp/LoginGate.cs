@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
@@ -8,7 +8,7 @@ public class LoginGate : MonoBehaviour
     public TMP_InputField userInput;
     public TMP_InputField passInput;
     public Button loginButton;
-    public PopupUI warningPopup;       // ÄãµÄ PopupUI£¨¾¯¸æÒ³£©
+    public PopupUI warningPopup;       // ä½ çš„ PopupUIï¼ˆè­¦å‘Šé¡µï¼‰
 
     [Header("Rules")]
     public int userMin = 1;
@@ -36,11 +36,11 @@ public class LoginGate : MonoBehaviour
         if (!ok)
         {
             if (warningPopup) warningPopup.PopOpen();
-            else Debug.LogWarning("WarningPopup Î´°ó¶¨¡£");
+            else Debug.LogWarning("WarningPopup æœªç»‘å®šã€‚");
             return;
         }
 
-        // TODO: ÔÚÕâÀïÖ´ÐÐÄãµÄµÇÂ¼Âß¼­£¨Ð£Ñé/ÇëÇó/ÇÐ³¡¾°£©
+        // TODO: åœ¨è¿™é‡Œæ‰§è¡Œä½ çš„ç™»å½•é€»è¾‘ï¼ˆæ ¡éªŒ/è¯·æ±‚/åˆ‡åœºæ™¯ï¼‰
         Debug.Log($"Login OK: user={userInput.text}, pass=******");
     }
 }

@@ -1,4 +1,4 @@
-using UnityEngine;
+锘縰sing UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
@@ -6,12 +6,12 @@ using DG.Tweening;
 public class BottomKeypadController : MonoBehaviour
 {
     [Header("Refs")]
-    public RectTransform panel;         // 小键盘本体（自身）
-    public CanvasGroup mask;            // 半透明遮罩（点击关闭）
-    public TMP_InputField[] inputs;     // 可编辑的输入框（用户名、密码）
+    public RectTransform panel;         
+    public CanvasGroup mask;            
+    public TMP_InputField[] inputs; 
 
     [Header("Anim")]
-    public float height = 380f;         // 小键盘高度
+    public float height = 380f;    
     public float duration = 0.25f;
     public Ease ease = Ease.OutCubic;
 
@@ -21,7 +21,7 @@ public class BottomKeypadController : MonoBehaviour
 
     void Awake()
     {
-        // 初始收起
+       
         var anchored = panel.anchoredPosition;
         anchored.y = -height;
         panel.anchoredPosition = anchored;
@@ -34,12 +34,12 @@ public class BottomKeypadController : MonoBehaviour
             if (btn) btn.onClick.AddListener(Hide);
         }
 
-        // 给输入框绑定：选中就弹出小键盘并设置 current
+        
         foreach (var input in inputs)
         {
             if (!input) continue;
             input.onSelect.AddListener(_ => ShowFor(input));
-            input.onDeselect.AddListener(_ => { /* 这里不要立刻隐藏，交给外部点击遮罩或OK按钮 */ });
+            input.onDeselect.AddListener(_ => {  });
         }
     }
 
@@ -61,7 +61,7 @@ public class BottomKeypadController : MonoBehaviour
         _moveTween?.Kill();
         _moveTween = panel.DOAnchorPosY(0f, duration).SetEase(ease);
 
-        // 聚焦保障
+       
         if (_current) _current.ActivateInputField();
     }
 
@@ -79,7 +79,6 @@ public class BottomKeypadController : MonoBehaviour
         _moveTween = panel.DOAnchorPosY(-height, duration).SetEase(ease);
     }
 
-    // 供小键盘按钮调用
     public void Append(string s)
     {
         if (!_current) return;
@@ -110,7 +109,6 @@ public class BottomKeypadController : MonoBehaviour
 
     public void FocusNext()
     {
-        // 在数组里的下一个
         if (!_current || inputs == null || inputs.Length == 0) return;
         int idx = System.Array.IndexOf(inputs, _current);
         int next = (idx + 1 < inputs.Length) ? idx + 1 : idx;

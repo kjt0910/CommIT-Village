@@ -1,19 +1,18 @@
-// SelectionHighlighter.cs
+ï»¿// SelectionHighlighter.cs
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SelectionHighlighter : MonoBehaviour
 {
-    [Header("ÒıÓÃ")]
     public Canvas selectionCanvas;      // SelectionCanvas
-    public RectTransform frame;         // SelectionFrame (Image µÄ RectTransform)
-    public Camera worldCamera;          // ¿´ 3D ÎïÌåµÄÏà»ú£¨Ò»°ãÊÇÖ÷Ïà»ú£©
+    public RectTransform frame;         // SelectionFrame (Image çš„ RectTransform)
+    public Camera worldCamera;          // çœ‹ 3D ç‰©ä½“çš„ç›¸æœºï¼ˆä¸€èˆ¬æ˜¯ä¸»ç›¸æœºï¼‰
 
     public void ShowFor(SelectablePart part)
     {
         if (!part || !part.targetRenderer) { Hide(); return; }
 
-        // 1) È¡°üÎ§ºĞ 8 ¸ö½Çµã
+        // 1) å–åŒ…å›´ç›’ 8 ä¸ªè§’ç‚¹
         var b = part.targetRenderer.bounds;
         Vector3[] corners =
         {
@@ -27,14 +26,14 @@ public class SelectionHighlighter : MonoBehaviour
             new(b.max.x, b.max.y, b.max.z),
         };
 
-        // 2) ×ª»»µ½ÆÁÄ»×ø±ê£¬Çó min/max
+        // 2) è½¬æ¢åˆ°å±å¹•åæ ‡ï¼Œæ±‚ min/max
         float minX = float.PositiveInfinity, minY = float.PositiveInfinity;
         float maxX = float.NegativeInfinity, maxY = float.NegativeInfinity;
 
         for (int i = 0; i < corners.Length; i++)
         {
             Vector3 sp = worldCamera.WorldToScreenPoint(corners[i]);
-            // Èç¹ûÔÚÏà»úºóÃæ£¬Ö±½ÓÒş²Ø£¨¿É×ÔĞĞ¸Ä³É²Ã¼ô£©
+            // å¦‚æœåœ¨ç›¸æœºåé¢ï¼Œç›´æ¥éšè—ï¼ˆå¯è‡ªè¡Œæ”¹æˆè£å‰ªï¼‰
             if (sp.z < 0f) { Hide(); return; }
 
             minX = Mathf.Min(minX, sp.x);
@@ -43,19 +42,19 @@ public class SelectionHighlighter : MonoBehaviour
             maxY = Mathf.Max(maxY, sp.y);
         }
 
-        // 3) ¼Ó padding£¨ÏñËØ£©
+        // 3) åŠ  paddingï¼ˆåƒç´ ï¼‰
         minX -= part.padding.x;
         minY -= part.padding.y;
         maxX += part.padding.x;
         maxY += part.padding.y;
 
-        // 4) ÆÁÄ»ÏñËØ -> Canvas ±¾µØ×ø±ê
+        // 4) å±å¹•åƒç´  -> Canvas æœ¬åœ°åæ ‡
         RectTransform canvasRT = selectionCanvas.transform as RectTransform;
         Vector2 bl, tr;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRT, new Vector2(minX, minY), null, out bl);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(canvasRT, new Vector2(maxX, maxY), null, out tr);
 
-        // 5) ÉèÖÃ¿òµÄÎ»ÖÃÓë³ß´ç
+        // 5) è®¾ç½®æ¡†çš„ä½ç½®ä¸å°ºå¯¸
         frame.gameObject.SetActive(true);
         frame.anchoredPosition = (bl + tr) * 0.5f;
         frame.sizeDelta = (tr - bl);

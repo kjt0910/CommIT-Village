@@ -1,11 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using DG.Tweening;
 
 public class ClockRotator : MonoBehaviour
 {
-    [Header("ÉèÖÃ")]
-    public int iconCount = 6;         // Ò»¹²ÓĞ¶àÉÙ¸öicon
-    public float rotateDuration = 0.5f; // Ã¿´ÎĞı×ªµÄÊ±¼ä
+    public int iconCount = 6;         // ä¸€å…±æœ‰å¤šå°‘ä¸ªicon
+    public float rotateDuration = 0.5f; // æ¯æ¬¡æ—‹è½¬çš„æ—¶é—´
     public Ease rotateEase = Ease.InOutSine;
 
     private int currentIndex = 0;
@@ -13,7 +12,7 @@ public class ClockRotator : MonoBehaviour
 
     void Start()
     {
-        // ×Ô¶¯¿ªÊ¼Ğı×ª
+        // è‡ªåŠ¨å¼€å§‹æ—‹è½¬
         RotateToNext();
     }
 
@@ -28,7 +27,7 @@ public class ClockRotator : MonoBehaviour
 
         transform.DORotate(new Vector3(0, 0, targetZ), rotateDuration)
                  .SetEase(rotateEase)
-                 .OnComplete(RotateToNext); // ¼ÌĞøÏÂÒ»¸ö
+                 .OnComplete(RotateToNext); // ç»§ç»­ä¸‹ä¸€ä¸ª
     }
 
     public void StopAt(int index)
@@ -38,7 +37,7 @@ public class ClockRotator : MonoBehaviour
         float targetZ = -360f / iconCount * currentIndex;
 
         transform.DORotate(new Vector3(0, 0, targetZ), rotateDuration)
-                 .SetEase(Ease.OutBack); // ×îºóÒ»¶Î¿ÉÒÔ¼Óµãµ¯ĞÔ
+                 .SetEase(Ease.OutBack); // æœ€åä¸€æ®µå¯ä»¥åŠ ç‚¹å¼¹æ€§
     }
 }
 

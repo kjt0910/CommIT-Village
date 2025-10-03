@@ -1,4 +1,4 @@
-using UnityEngine;
+锘縰sing UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class ClickPlayAnimation : MonoBehaviour
@@ -14,7 +14,7 @@ public class ClickPlayAnimation : MonoBehaviour
     {
         if (animator)
         {
-            animator.SetTrigger("PlayMove"); // 对应你在 Animator 里创建的 Trigger
+            animator.SetTrigger("PlayMove");
         }
     }
 }

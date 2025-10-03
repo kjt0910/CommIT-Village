@@ -1,26 +1,25 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
 /// </summary>
 public class PopupUI : MonoBehaviour
 {
-    [Header("¶¯»­ÉèÖÃ")]
-    public float duration = 0.3f;        // µ¯´°¶¯»­Ê±¼ä
-    public float startScale = 0.7f;      // µ¯³öÊ±³õÊ¼Ëõ·Å
-    public Ease easeIn = Ease.OutBack;   // ´ò¿ª¶¯»­ÇúÏß
-    public Ease easeOut = Ease.InBack;   // ¹Ø±Õ¶¯»­ÇúÏß
+    
+    public float duration = 0.3f;        // å¼¹çª—åŠ¨ç”»æ—¶é—´
+    public float startScale = 0.7f;      // å¼¹å‡ºæ—¶åˆå§‹ç¼©æ”¾
+    public Ease easeIn = Ease.OutBack;   // æ‰“å¼€åŠ¨ç”»æ›²çº¿
+    public Ease easeOut = Ease.InBack;   // å…³é—­åŠ¨ç”»æ›²çº¿
 
-    [Header("ÕÚÕÖÉèÖÃ")]
-    [SerializeField] private Image mask; // °ëÍ¸Ã÷ÕÚÕÖ£¨ĞèÊÇ Button£©
-    public float maskAlpha = 0.6f;       // ÕÚÕÖ×î´óÍ¸Ã÷¶È
-    public float maskFadeTime = 0.2f;    // ÕÚÕÖµ­Èëµ­³öÊ±¼ä
+    [SerializeField] private Image mask; // åŠé€æ˜é®ç½©ï¼ˆéœ€æ˜¯ Buttonï¼‰
+    public float maskAlpha = 0.6f;       // é®ç½©æœ€å¤§é€æ˜åº¦
+    public float maskFadeTime = 0.2f;    // é®ç½©æ·¡å…¥æ·¡å‡ºæ—¶é—´
 
-    private Vector3 originalScale;       // Ô­Ê¼Ëõ·Å
-    private CanvasGroup maskCanvasGroup; // ÕÚÕÖÍ¸Ã÷¶È¿ØÖÆ
+    private Vector3 originalScale;       // åŸå§‹ç¼©æ”¾
+    private CanvasGroup maskCanvasGroup; // é®ç½©é€æ˜åº¦æ§åˆ¶
 
-    private Tween scaleTween;            // µ±Ç°Ëõ·Å¶¯»­
-    private Tween maskTween;             // µ±Ç°ÕÚÕÖ¶¯»­
+    private Tween scaleTween;            // å½“å‰ç¼©æ”¾åŠ¨ç”»
+    private Tween maskTween;             // å½“å‰é®ç½©åŠ¨ç”»
 
     void Awake()
     {
@@ -29,7 +28,7 @@ public class PopupUI : MonoBehaviour
 
         if (mask != null)
         {
-            // ÕÚÕÖÍ¸Ã÷¶È¿ØÖÆ
+            // é®ç½©é€æ˜åº¦æ§åˆ¶
             maskCanvasGroup = mask.GetComponent<CanvasGroup>();
             if (maskCanvasGroup == null)
                 maskCanvasGroup = mask.gameObject.AddComponent<CanvasGroup>();
@@ -37,7 +36,7 @@ public class PopupUI : MonoBehaviour
             maskCanvasGroup.alpha = 0;
             mask.gameObject.SetActive(false);
 
-            // µã»÷ÕÚÕÖÊ±¹Ø±Õµ¯´°
+            // ç‚¹å‡»é®ç½©æ—¶å…³é—­å¼¹çª—
             Button maskBtn = mask.GetComponent<Button>();
             if (maskBtn != null)
                 maskBtn.onClick.AddListener(PopClose);
@@ -45,13 +44,13 @@ public class PopupUI : MonoBehaviour
     }
 
     /// <summary>
-    /// ´ò¿ª Popup
+    /// æ‰“å¼€ Popup
     /// </summary>
     public void PopOpen()
     {
         gameObject.SetActive(true);
 
-        // ÕÚÕÖµ­Èë
+        // é®ç½©æ·¡å…¥
         if (mask != null)
         {
             mask.gameObject.SetActive(true);
@@ -60,18 +59,18 @@ public class PopupUI : MonoBehaviour
             maskTween = maskCanvasGroup.DOFade(maskAlpha, maskFadeTime);
         }
 
-        // µ¯´°Ëõ·Å¶¯»­
+        // å¼¹çª—ç¼©æ”¾åŠ¨ç”»
         scaleTween?.Kill();
         transform.localScale = originalScale * startScale;
         scaleTween = transform.DOScale(originalScale, duration).SetEase(easeIn);
     }
 
     /// <summary>
-    /// ¹Ø±Õ Popup
+    /// å…³é—­ Popup
     /// </summary>
     public void PopClose()
     {
-        // ÕÚÕÖµ­³ö
+        // é®ç½©æ·¡å‡º
         if (mask != null)
         {
             maskTween?.Kill();
@@ -79,7 +78,7 @@ public class PopupUI : MonoBehaviour
                 .OnComplete(() => mask.gameObject.SetActive(false));
         }
 
-        // µ¯´°Ëõ·Å¶¯»­
+        // å¼¹çª—ç¼©æ”¾åŠ¨ç”»
         scaleTween?.Kill();
         scaleTween = transform.DOScale(originalScale * startScale, duration)
             .SetEase(easeOut)

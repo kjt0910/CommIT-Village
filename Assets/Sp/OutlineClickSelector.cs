@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class OutlineClickSelector : MonoBehaviour
@@ -6,7 +6,7 @@ public class OutlineClickSelector : MonoBehaviour
     public Camera worldCam;
     public LayerMask clickableMask = ~0;
     public float rayMaxDistance = 1000f;
-    public string triggerName = "PlayMove";   // Í³Ò»µÄ Animator Trigger
+    public string triggerName = "PlayMove";   // ç»Ÿä¸€çš„ Animator Trigger
 
     private SelectableOutline _current;
 
@@ -14,7 +14,7 @@ public class OutlineClickSelector : MonoBehaviour
     {
         if (!Input.GetMouseButtonDown(0)) return;
 
-        // Èç¹ûµã»÷ÔÚ UI ÉÏ¾ÍºöÂÔ£¨ĞèÒª³¡¾°ÀïÓĞ EventSystem£©
+        // å¦‚æœç‚¹å‡»åœ¨ UI ä¸Šå°±å¿½ç•¥ï¼ˆéœ€è¦åœºæ™¯é‡Œæœ‰ EventSystemï¼‰
         if (EventSystem.current && EventSystem.current.IsPointerOverGameObject()) return;
 
         Ray ray = worldCam.ScreenPointToRay(Input.mousePosition);
@@ -23,12 +23,12 @@ public class OutlineClickSelector : MonoBehaviour
             var sel = hit.collider.GetComponentInParent<SelectableOutline>();
             if (sel)
             {
-                // ÇĞ»»Ãè±ß
+                // åˆ‡æ¢æè¾¹
                 if (_current && _current != sel) _current.SetOutlined(false);
                 _current = sel;
                 _current.SetOutlined(true);
 
-                // ´¥·¢¶ÔÓ¦ Animator
+                // è§¦å‘å¯¹åº” Animator
                 var anim = sel.GetComponentInParent<Animator>();
                 if (anim && !string.IsNullOrEmpty(triggerName))
                     anim.SetTrigger(triggerName);
@@ -36,7 +36,7 @@ public class OutlineClickSelector : MonoBehaviour
         }
         else
         {
-            // µã¿Õ°×´¦Ê±È¡ÏûÑ¡ÖĞ
+            // ç‚¹ç©ºç™½å¤„æ—¶å–æ¶ˆé€‰ä¸­
             if (_current) _current.SetOutlined(false);
             _current = null;
         }

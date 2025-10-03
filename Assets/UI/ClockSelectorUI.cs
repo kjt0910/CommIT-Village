@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using System;
@@ -6,22 +6,21 @@ using System.Collections.Generic;
 
 public class ClockSelectorUI : MonoBehaviour
 {
-    [Header("ÒıÓÃ")]
-    public RectTransform pointer;          // Ö¸Õë£¨»áĞı×ªµÄÄÇ¸ö£©
-    public List<RectTransform> icons;      // È¦ÉÏµÄÍ¼±ê£¨¾²Ö¹£©
+    
+    public RectTransform pointer;          // æŒ‡é’ˆï¼ˆä¼šæ—‹è½¬çš„é‚£ä¸ªï¼‰
+    public List<RectTransform> icons;      // åœˆä¸Šçš„å›¾æ ‡ï¼ˆé™æ­¢ï¼‰
 
-    [Header("²¼¾Ö£¨¿ÉÑ¡×Ô¶¯ÅÅ²¼£©")]
+    
     public bool autoArrangeInCircle = false;
     public float radius = 220f;
-    public float startAngleDeg = 90f;      // 0¡ãÔÚÓÒ±ß£»90¡ãÔÚÉÏ·½£¬Ïñ±íÅÌ12µã
+    public float startAngleDeg = 90f;      // 0Â°åœ¨å³è¾¹ï¼›90Â°åœ¨ä¸Šæ–¹ï¼Œåƒè¡¨ç›˜12ç‚¹
 
-    [Header("Ğı×ª²½½ø")]
+   
     public float stepDuration = 0.35f;
     public Ease stepEase = Ease.InOutSine;
-    public float stepInterval = 0.0f;      // >0 Ê±×Ô¶¯Ã¿¸ô interval ×ßÒ»²½£»=0 ½ö¿¿ OnStepNext
+    public float stepInterval = 0.0f;      // >0 æ—¶è‡ªåŠ¨æ¯éš” interval èµ°ä¸€æ­¥ï¼›=0 ä»…é  OnStepNext
     public bool autoStart = true;
 
-    [Header("Ñ¡ÖĞ¶¯»­")]
     public float normalScale = 1.0f;
     public float selectedScale = 1.18f;
     public float scaleDuration = 0.18f;
@@ -31,8 +30,7 @@ public class ClockSelectorUI : MonoBehaviour
     public float punch = 0.08f;
     public float punchDur = 0.15f;
 
-    [Header("ÆäËü")]
-    public bool useUnscaledTime = false; // ÔİÍ£Ê±Ò²ÅÜ¶¯»­µÄ»°¹´ÉÏ
+    public bool useUnscaledTime = false; // æš‚åœæ—¶ä¹Ÿè·‘åŠ¨ç”»çš„è¯å‹¾ä¸Š
     public bool clockwise = true;
 
     public int CurrentIndex { get; private set; } = 0;
@@ -53,12 +51,12 @@ public class ClockSelectorUI : MonoBehaviour
         DOTween.defaultUpdateType = useUnscaledTime ? UpdateType.Late : UpdateType.Normal;
         DOTween.defaultTimeScaleIndependent = useUnscaledTime;
 
-        // ³õÊ¼ËùÓĞ icon Ëõ·ÅÎª normal
+        // åˆå§‹æ‰€æœ‰ icon ç¼©æ”¾ä¸º normal
         foreach (var icon in icons)
         {
             if (icon) icon.localScale = Vector3.one * normalScale;
         }
-        // ³õÊ¼¸ßÁÁµÚ0¸ö
+        // åˆå§‹é«˜äº®ç¬¬0ä¸ª
         HighlightIndex(0, instant: true);
 
         if (autoArrangeInCircle) ArrangeIconsInCircle();
@@ -80,7 +78,7 @@ public class ClockSelectorUI : MonoBehaviour
         }
     }
 
-    // === ¶ÔÍâ API ===
+    // === å¯¹å¤– API ===
 
     public void StartRun()
     {
@@ -103,19 +101,19 @@ public class ClockSelectorUI : MonoBehaviour
     }
 
     /// <summary>
-    /// Í£µ½Ö¸¶¨ index£¨×îºóÒ»ÏÂ¿É¸üË¿»¬£©£¬Í£ÏÂºó±£³ÖÑ¡ÖĞ·Å´ó¡£
+    /// åœåˆ°æŒ‡å®š indexï¼ˆæœ€åä¸€ä¸‹å¯æ›´ä¸æ»‘ï¼‰ï¼Œåœä¸‹åä¿æŒé€‰ä¸­æ”¾å¤§ã€‚
     /// </summary>
     public void StopAt(int index, float extraSpinTurns = 0f, float finalDur = 0.5f, Ease finalEase = Ease.OutCubic)
     {
-        // ÏÈÍ£Ö¹Á¬ĞøÇı¶¯
+        // å…ˆåœæ­¢è¿ç»­é©±åŠ¨
         IsRunning = false;
         _accTimer = 0f;
 
-        // ¼ÆËãÄ¿±ê½Ç£¨ÔÊĞí¶îÍâ×ª¼¸È¦ÔÙÂäµã£©
+        // è®¡ç®—ç›®æ ‡è§’ï¼ˆå…è®¸é¢å¤–è½¬å‡ åœˆå†è½ç‚¹ï¼‰
         float targetAngle = IndexToPointerAngle(index);
         float currentZ = pointer.eulerAngles.z;
 
-        // °Ñ½Ç¶È²î´¦Àíµ½×î½ü·½Ïò£¬ÔÙ¼ÓÕûÈ¦
+        // æŠŠè§’åº¦å·®å¤„ç†åˆ°æœ€è¿‘æ–¹å‘ï¼Œå†åŠ æ•´åœˆ
         float delta = Mathf.DeltaAngle(currentZ, targetAngle);
         float spin = delta + 360f * (clockwise ? -extraSpinTurns : extraSpinTurns);
 
@@ -125,7 +123,7 @@ public class ClockSelectorUI : MonoBehaviour
             .SetUpdate(useUnscaledTime)
             .OnUpdate(() =>
             {
-                // ¸ù¾İÖ¸Õë½Ç¶È¸üĞÂ¡°µ±Ç°Ë÷Òı¡±µÄ¸ßÁÁ£¨ÊµÊ±£©
+                // æ ¹æ®æŒ‡é’ˆè§’åº¦æ›´æ–°â€œå½“å‰ç´¢å¼•â€çš„é«˜äº®ï¼ˆå®æ—¶ï¼‰
                 int idx = AngleToNearestIndex(pointer.eulerAngles.z);
                 if (idx != _lastIndex) HighlightIndex(idx, instant: false);
             })
@@ -136,7 +134,7 @@ public class ClockSelectorUI : MonoBehaviour
             });
     }
 
-    // === ÄÚ²¿ ===
+    // === å†…éƒ¨ ===
 
     private void RotateToIndex(int nextIndex, float duration, Ease ease, bool loopAfter)
     {
@@ -158,7 +156,7 @@ public class ClockSelectorUI : MonoBehaviour
                 CurrentIndex = nextIndex;
                 if (loopAfter && IsRunning && stepInterval <= 0f)
                 {
-                    // Èç¹ûÃ»ÓĞÊ±¼ä¼ä¸ô£¬¾ÍÁ´Ê½¼ÌĞøÏÂÒ»²½
+                    // å¦‚æœæ²¡æœ‰æ—¶é—´é—´éš”ï¼Œå°±é“¾å¼ç»§ç»­ä¸‹ä¸€æ­¥
                     StepNext();
                 }
             });
@@ -166,7 +164,7 @@ public class ClockSelectorUI : MonoBehaviour
 
     private void HighlightIndex(int index, bool instant, bool final = false)
     {
-        // È¡ÏûÉÏÒ»¸ö
+        // å–æ¶ˆä¸Šä¸€ä¸ª
         if (_lastIndex >= 0 && _lastIndex < icons.Count && icons[_lastIndex])
         {
             var last = icons[_lastIndex];
@@ -175,7 +173,7 @@ public class ClockSelectorUI : MonoBehaviour
             else last.DOScale(normalScale, scaleDuration * 0.8f).SetEase(deselectEase).SetUpdate(useUnscaledTime);
         }
 
-        // Ñ¡ÖĞĞÂ
+        // é€‰ä¸­æ–°
         if (index >= 0 && index < icons.Count && icons[index])
         {
             var cur = icons[index];
@@ -191,17 +189,17 @@ public class ClockSelectorUI : MonoBehaviour
         _lastIndex = index;
     }
 
-    // ½«Ë÷ÒıÓ³Éäµ½¡°Ö¸Õë½Ç¶È¡±£¨Ö¸Ïò¸ÃÉÈÇøÖĞĞÄ£©
+    // å°†ç´¢å¼•æ˜ å°„åˆ°â€œæŒ‡é’ˆè§’åº¦â€ï¼ˆæŒ‡å‘è¯¥æ‰‡åŒºä¸­å¿ƒï¼‰
     private float IndexToPointerAngle(int index)
     {
         int n = Mathf.Max(icons.Count, 1);
         float step = 360f / n;
-        // Ö¸ÕëÄ¬ÈÏÖ¸Ïò startAngleDeg£¨index=0£©£¬Ë³Ê±ÕëĞı×ª = ½Ç¶È¼õĞ¡
+        // æŒ‡é’ˆé»˜è®¤æŒ‡å‘ startAngleDegï¼ˆindex=0ï¼‰ï¼Œé¡ºæ—¶é’ˆæ—‹è½¬ = è§’åº¦å‡å°
         float angle = startAngleDeg + (clockwise ? -index * step : index * step);
         return Normalize(angle);
     }
 
-    // ¸ù¾İÖ¸Õëµ±Ç°½Ç£¬Ëã×î½Ó½üµÄ index
+    // æ ¹æ®æŒ‡é’ˆå½“å‰è§’ï¼Œç®—æœ€æ¥è¿‘çš„ index
     private int AngleToNearestIndex(float pointerZ)
     {
         int n = Mathf.Max(icons.Count, 1);
@@ -211,7 +209,7 @@ public class ClockSelectorUI : MonoBehaviour
         float raw = clockwise ? -diff / step : diff / step;
 
         int idx = Mathf.RoundToInt(raw);
-        idx = (idx % n + n) % n; // ¹æ·¶»¯µ½ [0, n)
+        idx = (idx % n + n) % n; // è§„èŒƒåŒ–åˆ° [0, n)
         return idx;
     }
 
@@ -240,7 +238,7 @@ public class ClockSelectorUI : MonoBehaviour
         CurrentIndex = 0;
     }
 
-    // ¡ª¡ª ÏÂÃæÊÇ±ã½İ°´Å¥£¨¿É°óµ½ UI Button£©¡ª¡ª
+    // â€”â€” ä¸‹é¢æ˜¯ä¾¿æ·æŒ‰é’®ï¼ˆå¯ç»‘åˆ° UI Buttonï¼‰â€”â€”
     public void UI_Start() => StartRun();
     public void UI_Stop() => StopRun();
     public void UI_StepNext() => StepNext();

@@ -1,23 +1,21 @@
-// PartSelector.cs
+ï»¿// PartSelector.cs
 using UnityEngine;
-using UnityEngine.EventSystems; // ·ÀÖ¹µãµ½ UI Ê±Ò²´¥·¢
+using UnityEngine.EventSystems; // é˜²æ­¢ç‚¹åˆ° UI æ—¶ä¹Ÿè§¦å‘
 
 public class PartSelector : MonoBehaviour
 {
-    [Header("ÒıÓÃ")]
-    public Camera worldCamera;                 // Ö÷Ïà»ú
-    public LayerMask selectableMask = ~0;      // ¿Éµã»÷µÄ²ã
-    public SelectionHighlighter highlighter;   // ÉÏÒ»²½µÄ½Å±¾
-    public GameObject partDetailPanel;         // Ñ¡ÖĞºóÒª´ò¿ªµÄ UI£¨¿É¿Õ£©
+    public Camera worldCamera;                 // ä¸»ç›¸æœº
+    public LayerMask selectableMask = ~0;      // å¯ç‚¹å‡»çš„å±‚
+    public SelectionHighlighter highlighter;   // ä¸Šä¸€æ­¥çš„è„šæœ¬
+    public GameObject partDetailPanel;         // é€‰ä¸­åè¦æ‰“å¼€çš„ UIï¼ˆå¯ç©ºï¼‰
 
-    [Header("ÉäÏß²ÎÊı")]
     public float rayMaxDistance = 1000f;
 
     private SelectablePart _current;
 
     void Update()
     {
-        // ºöÂÔµã»÷ UI µÄÇé¿ö
+        // å¿½ç•¥ç‚¹å‡» UI çš„æƒ…å†µ
         if (EventSystem.current && EventSystem.current.IsPointerOverGameObject()) return;
 
         if (Input.GetMouseButtonDown(0))
@@ -35,7 +33,7 @@ public class PartSelector : MonoBehaviour
             }
         }
 
-        // Ñ¡ÖĞºóÖ¡¸úËæ£¨ÎïÌå¶¯/Ïà»ú¶¯Ê±£©
+        // é€‰ä¸­åå¸§è·Ÿéšï¼ˆç‰©ä½“åŠ¨/ç›¸æœºåŠ¨æ—¶ï¼‰
         if (_current)
             highlighter.ShowFor(_current);
     }
@@ -46,7 +44,7 @@ public class PartSelector : MonoBehaviour
         highlighter.ShowFor(_current);
 
         if (partDetailPanel)
-            partDetailPanel.SetActive(true); // ÕâÀïÄãÔÙÌî³ä¾ßÌåĞÅÏ¢
+            partDetailPanel.SetActive(true); // è¿™é‡Œä½ å†å¡«å……å…·ä½“ä¿¡æ¯
     }
 
     public void Deselect()

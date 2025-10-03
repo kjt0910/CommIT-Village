@@ -1,10 +1,10 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [System.Serializable]
 public class IconItem : MonoBehaviour
 {
-    public RectTransform icon;   // Õâ¸ö°´Å¥ / Í¼±ê
-    public IconPopup popup;      // °ó¶¨µÄ popup£¨¿É·ÅÔÚ icon ÏÂ×÷Îª×ÓÎïÌå£©
+    public RectTransform icon;   // è¿™ä¸ªæŒ‰é’® / å›¾æ ‡
+    public IconPopup popup;      // ç»‘å®šçš„ popupï¼ˆå¯æ”¾åœ¨ icon ä¸‹ä½œä¸ºå­ç‰©ä½“ï¼‰
 
     public IconItem(RectTransform icon, IconPopup popup)
     {

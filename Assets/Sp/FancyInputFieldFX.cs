@@ -1,21 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-/// <summary>
-/// ¿Æ¼¼·çÊäÈë¿òÌØĞ§£º¸¡¶¯±êÇ©¡¢Ãè±ß·¢¹â¡¢ÏÂ»®ÏßÉ¨¹â¡¢½¹µãËõ·Å¡¢¹â±ê¸ÄÉ«
-/// ÓÃ·¨£º¹ÒÔÚÃ¿¸ö TMP_InputField µÄ¸ùÎïÌåÉÏ
-/// </summary>
 [RequireComponent(typeof(TMP_InputField))]
 public class FancyInputFieldFX : MonoBehaviour
 {
     [Header("Refs")]
     public TMP_InputField input;
-    public RectTransform floatingLabel;   // ÄÚ²¿µÄ¡°User / Password¡±±êÇ©£¨Text/TMP£©
-    public Image glowOutline;             // ËÄÖÜ·¢¹âÃè±ß£¨PNG/SVG£¬Image£©
-    public Image underline;               // ÏÂ»®Ïß Image£¨ÓÃÓÚÉ¨¹â£©
-    public RectTransform rootToPunch;     // »ñµÃ½¹µãÊ±ÇáÎ¢Ëõ·ÅµÄÈİÆ÷£¨Ò»°ã¾ÍÊÇ×Ô¼º£©
+    public RectTransform floatingLabel;   
+    public Image glowOutline;             
+    public Image underline;               
+    public RectTransform rootToPunch;     //
 
     [Header("Colors")]
     public Color glowIdle = new Color(0.1f, 0.7f, 1f, 0.35f);
@@ -23,12 +19,12 @@ public class FancyInputFieldFX : MonoBehaviour
     public Color caretColor = new Color(0.2f, 0.9f, 1f, 1f);
 
     [Header("Label motion")]
-    public Vector2 labelFocusedOffset = new Vector2(0, 22); // ¾Û½¹/ÓĞ×ÖÊ±ÉÏÒÆ
+    public Vector2 labelFocusedOffset = new Vector2(0, 22); // 
     public float labelScaleFocused = 0.82f;
     public float labelAnim = 0.16f;
 
     [Header("Underline scan")]
-    public float scanWidth = 0.2f;   // ²ÄÖÊ/Ìî³äĞèÒªÖ§³Ö Maskable£¨Ò»°ã Image OK£©
+    public float scanWidth = 0.2f;   // 
     public float scanDur = 0.9f;
 
     [Header("Punch")]
@@ -76,13 +72,13 @@ public class FancyInputFieldFX : MonoBehaviour
         if (glowOutline) glowOutline.DOColor(glowFocus, 0.12f);
         input.caretColor = caretColor;
 
-        // label ÉÏÒÆ/ËõĞ¡
+        // label ä¸Šç§»/ç¼©å°
         MoveLabel(focusedOrHasText: true);
 
-        // ÏÂ»®ÏßÉ¨¹â
+        // ä¸‹åˆ’çº¿æ‰«å…‰
         StartScan();
 
-        // ÇáÎ¢µ¯Ò»ÏÂ
+        // è½»å¾®å¼¹ä¸€ä¸‹
         if (rootToPunch) rootToPunch.DOPunchScale(Vector3.one * punchScale, punchDur, 8, 0.8f);
     }
 
@@ -92,10 +88,10 @@ public class FancyInputFieldFX : MonoBehaviour
         if (glowOutline) glowOutline.DOColor(glowIdle, 0.18f);
         input.caretColor = _caretOrig;
 
-        // ÎŞÎÄ×ÖÊ±±êÇ©»ØÂä
+        // æ— æ–‡å­—æ—¶æ ‡ç­¾å›è½
         MoveLabel(focusedOrHasText: hasText);
 
-        // Í£Ö¹É¨¹â
+        // åœæ­¢æ‰«å…‰
         _scanTween?.Kill();
     }
 
@@ -140,7 +136,7 @@ public class FancyInputFieldFX : MonoBehaviour
         if (!underline) return;
         _scanTween?.Kill();
 
-        // Ê¹ÓÃ Image.fillAmount À´×ö¡°ÄÜÁ¿ÌõÊ½¡±É¨¹â
+        // ä½¿ç”¨ Image.fillAmount æ¥åšâ€œèƒ½é‡æ¡å¼â€æ‰«å…‰
         underline.type = Image.Type.Filled;
         underline.fillMethod = Image.FillMethod.Horizontal;
         underline.fillOrigin = (int)Image.OriginHorizontal.Left;

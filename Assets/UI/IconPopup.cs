@@ -1,14 +1,12 @@
-using UnityEngine;
+锘縰sing UnityEngine;
 using TMPro;
 using DG.Tweening;
 
 public class IconPopup : MonoBehaviour
 {
-    [Header("引用")]
-    public RectTransform panel;           // Popup 面板
-    public TMP_Text descriptionText;      // 说明文字
+    public RectTransform panel;           // Popup 闈㈡澘
+    public TMP_Text descriptionText;      // 璇存槑鏂囧瓧
 
-    [Header("动画设置")]
     public float showScale = 1f;
     public float hideScale = 0.6f;
     public float duration = 0.25f;

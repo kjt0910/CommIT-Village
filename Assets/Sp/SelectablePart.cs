@@ -1,13 +1,11 @@
-// SelectablePart.cs
+ï»¿// SelectablePart.cs
 using UnityEngine;
 
 [DisallowMultipleComponent]
 public class SelectablePart : MonoBehaviour
 {
-    [Tooltip("ÓÃÓÚ¼ÆËãÆÁÄ»°üÎ§¿òµÄäÖÈ¾Æ÷£»Áô¿ÕÔò×Ô¶¯ÔÚ×ÓÎïÌåÀïÑ°ÕÒ")]
     public Renderer targetRenderer;
 
-    [Tooltip("±ß¿òÓë°üÎ§ºĞµÄ¶îÍâÁô°×£¨ÏñËØ£©")]
     public Vector2 padding = new Vector2(10, 10);
 
     void Reset()

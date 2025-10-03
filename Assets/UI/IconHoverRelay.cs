@@ -1,28 +1,28 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class IconHoverRelay : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISelectHandler, IDeselectHandler
 {
-    public ClockSelectorPointer parent;  // ÍÏ DialRoot£¨¹ÒÓĞ ClockSelectorPointer µÄÎïÌå£©
-    public int index;                    // ¸Ã°´Å¥ÔÚ icons ÁĞ±íÖĞµÄË÷Òı
+    public ClockSelectorPointer parent;  // æ‹– DialRootï¼ˆæŒ‚æœ‰ ClockSelectorPointer çš„ç‰©ä½“ï¼‰
+    public int index;                    // è¯¥æŒ‰é’®åœ¨ icons åˆ—è¡¨ä¸­çš„ç´¢å¼•
 
-    // Êó±êÒÆÈë
+    // é¼ æ ‡ç§»å…¥
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (parent) parent.OnIconHoverBegin(index);
     }
-    // Êó±êÒÆ³ö
+    // é¼ æ ‡ç§»å‡º
     public void OnPointerExit(PointerEventData eventData)
     {
         if (parent) parent.OnIconHoverEnd(index);
     }
 
-    // ¼üÅÌ/ÊÖ±úµ¼º½Ñ¡ÖĞ£¨UI ¡°¸ßÁÁ/Focus¡±£©
+    // é”®ç›˜/æ‰‹æŸ„å¯¼èˆªé€‰ä¸­ï¼ˆUI â€œé«˜äº®/Focusâ€ï¼‰
     public void OnSelect(BaseEventData eventData)
     {
         if (parent) parent.OnIconHoverBegin(index);
     }
-    // Ê§½¹
+    // å¤±ç„¦
     public void OnDeselect(BaseEventData eventData)
     {
         if (parent) parent.OnIconHoverEnd(index);

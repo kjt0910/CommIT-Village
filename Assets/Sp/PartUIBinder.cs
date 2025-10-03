@@ -1,18 +1,18 @@
-// PartUIBinder.cs
+ï»¿// PartUIBinder.cs
 using UnityEngine;
 
 public class PartUIBinder : MonoBehaviour
 {
-    [Header("ĞüÍ£ HoverUI ÄÚÈİ")]
+    [Header("HoverUI")]
     public string hoverTitle;
     [TextArea] public string hoverSubtitle;
     public Sprite hoverIcon;
 
-    [Header("ÈÎÎñ TaskUI ÄÚÈİ£¨Èô²»ÓÃ¹«¹²Ãæ°å£¬¿ÉÖ»Ìî taskUIPanel£©")]
+    [Header("TaskUI")]
     public string taskTitle;
     [TextArea] public string taskDescription;
     public Sprite taskIcon;
 
-    [Header("¿ÉÑ¡£º´Ë²¿¼şµÄ×¨Êô TaskUI Ãæ°å")]
-    public GameObject taskUIPanel; // ÈôÁô¿ÕÔòÊ¹ÓÃ¹«¹² TaskUI
+    [Header(" TaskUI pale")]
+    public GameObject taskUIPanel; 
 }

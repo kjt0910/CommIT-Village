@@ -1,17 +1,17 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using DG.Tweening;
 
 /// <summary>
-/// ¹ÒÔÚ¡°°´ÈÎÒâ¼ü¼ÌĞø¡±ÌáÊ¾µÄ¶ÔÏóÉÏ
-/// ¹¦ÄÜ£ººôÎüÉÁË¸£¬°´ÈÎÒâ¼üºóÒş²Ø×Ô¼º²¢´ò¿ªµÇÂ¼µ¯´°
+/// æŒ‚åœ¨â€œæŒ‰ä»»æ„é”®ç»§ç»­â€æç¤ºçš„å¯¹è±¡ä¸Š
+/// åŠŸèƒ½ï¼šå‘¼å¸é—ªçƒï¼ŒæŒ‰ä»»æ„é”®åéšè—è‡ªå·±å¹¶æ‰“å¼€ç™»å½•å¼¹çª—
 /// </summary>
 public class PressAnyKeyToLogin : MonoBehaviour
 {
-    [Header("ÒıÓÃ")]
-    public PopupUI loginPopup;          // µÇÂ¼µ¯´°
-    public CanvasGroup group;           // ¿ØÖÆÕûÌåÍ¸Ã÷¶È£¨¸¸ÎïÌå£©
+    
+    public PopupUI loginPopup;          // ç™»å½•å¼¹çª—
+    public CanvasGroup group;           // æ§åˆ¶æ•´ä½“é€æ˜åº¦ï¼ˆçˆ¶ç‰©ä½“ï¼‰
 
-    [Header("ºôÎüÉÁË¸²ÎÊı")]
+    
     [Range(0f, 1f)] public float fadeMin = 0.35f;
     [Range(0f, 1f)] public float fadeMax = 1.0f;
     public float fadeDuration = 1.2f;
@@ -38,7 +38,7 @@ public class PressAnyKeyToLogin : MonoBehaviour
 
     void OnEnable()
     {
-        // ºôÎüÉÁË¸
+        // å‘¼å¸é—ªçƒ
         fadeTween = group.DOFade(fadeMin, fadeDuration)
             .SetEase(Ease.InOutSine)
             .SetLoops(-1, LoopType.Yoyo);
@@ -66,11 +66,11 @@ public class PressAnyKeyToLogin : MonoBehaviour
     {
         triggered = true;
 
-        // Í£Ö¹ºôÎü¶¯»­
+        // åœæ­¢å‘¼å¸åŠ¨ç”»
         fadeTween?.Kill();
         scaleTween?.Kill();
 
-        // Ğ¡¶¯»­ÊÕÆğ
+        // å°åŠ¨ç”»æ”¶èµ·
         Sequence seq = DOTween.Sequence();
         seq.Append(group.DOFade(0f, 0.2f));
         seq.Join(transform.DOScale(0.97f, 0.2f));
@@ -81,7 +81,7 @@ public class PressAnyKeyToLogin : MonoBehaviour
             if (loginPopup != null)
                 loginPopup.PopOpen();
             else
-                Debug.LogWarning("[PressAnyKeyToLogin] Î´°ó¶¨ loginPopup¡£");
+                Debug.LogWarning("[PressAnyKeyToLogin] loginPopupã€‚");
         });
     }
 

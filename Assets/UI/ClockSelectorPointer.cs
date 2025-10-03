@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 public class ClockSelectorPointer : MonoBehaviour
 {
-    [Header("引用")]
+    
     public RectTransform pointer;            // 旋转的指针（pivot=0.5,0）
     public RectTransform pointerTip;         // 指针尖端（在 Pointer 的最前端）
     public RectTransform center;             // 表盘中心（通常=本物体）
     public List<RectTransform> icons = new List<RectTransform>();
 
-    [Header("圆形排布（仅使用已有 icons）")]
+    
     public bool autoArrangeCircle = true;    // 勾上：运行时自动排布
     public float radius = 220f;              // 半径
     public float startAngleDeg = 90f;        // 0°在右边；90°在上（12点）
     public bool clockwise = true;            // 顺/逆时针布置
     public bool normalizeAnchors = true;     // 排布前归一化 anchor/pivot
 
-    [Header("旋转步进 / 自动")]
+    
     public float stepDegrees = 60f;          // 每步转多少度
     public float stepDuration = 0.35f;
     public Ease stepEase = Ease.InOutSine;
@@ -25,13 +25,13 @@ public class ClockSelectorPointer : MonoBehaviour
     public bool autoStart = true;
     public bool useUnscaledTime = false;
 
-    [Header("Popup（每个 icon 一个独立的）")]
+    
     public List<IconPopup> iconPopups = new List<IconPopup>(); // 与 icons 一一对应
 
-    [Header("图标与 Popup 一体化")]
+    
     public List<IconItem> items = new List<IconItem>();
 
-    [Header("选中动画")]
+    
     public float normalScale = 1.0f;
     public float selectedScale = 1.2f;
     public float scaleDuration = 0.18f;
@@ -41,7 +41,7 @@ public class ClockSelectorPointer : MonoBehaviour
     public float punch = 0.08f;
     public float punchDur = 0.15f;
 
-    [Header("悬停逻辑")]
+    
     public bool alignPointerOnHover = true;  // 悬停时让指针对齐该按钮
     public float hoverAlignDur = 0.2f;
     public Ease hoverAlignEase = Ease.OutCubic;

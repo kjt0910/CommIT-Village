@@ -1,9 +1,8 @@
-// SelectableOutline.cs
+ï»¿// SelectableOutline.cs
 using UnityEngine;
 
 public class SelectableOutline : MonoBehaviour
 {
-    [Header("Ãè±ß²ÄÖÊ£¨µ¹·¨Ïß Shader£©")]
     public Material outlineMaterial;
     public float outlineWidth = 0.02f;
     public Color outlineColor = Color.cyan;
